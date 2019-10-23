@@ -13,6 +13,9 @@ router.get('', actionsTeacher.actionAllTeachers);
 // Connexion teacher
 router.get('/login/:username/:password',actionsTeacher.actionsConnexionTeacher);
 
+//parser
+router.get('/parse/test',actionsTeacher.actionsParseIcalFile);
+
 // Add one teacher
 router.post('',actionsTeacher.actionsPostTeacher);
 
@@ -21,5 +24,6 @@ router.delete('/:id',actionsTeacher.actionsDeleteTeacher);
 
 // Update one teacher
 router.put('/:id',actionsTeacher.actionsUpdateTeacher);
+
 
 module.exports = router;

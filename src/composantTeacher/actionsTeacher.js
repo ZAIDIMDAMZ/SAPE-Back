@@ -2,6 +2,9 @@ const colTeacher  = require('./modeleTeacher');
 const processTeacher = require('./processTeacher');
 const jwt = require ('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const ical = require('node-ical');
+const path = require('path');
+const fs = require('fs');
 
 module.exports={
 
@@ -98,5 +101,26 @@ module.exports={
             if(errType=="Error in save methode") res.status(400).send('Error in the save methode')
             if(errType=="Error") res.status(400).send("There was a problem updating the teacher.")
         })
+    },
+
+    actionsParseIcalFile: (req, res)=>{
+        //console.log('hello :'+ path.basename('C:\\Users\\hajar\\Desktop\\courtaud_didier.ics'))
+ 
+        //use the sync function parseFile() to parse this ics file
+        const events = ical.sync.parseFile('C:\\Users\\hajar\\Desktop\\courtaud_didier.ics');
+        //ical.sync.parseFile
+        // // loop through events and log them
+        for (const event of Object.values(events)) {
+            // // res.send(
+            console.log(    
+                'Summary: ' + event.summary +
+                '\nDescription: ' + JSON.stringify(event.description)+
+                '\nStart Date: ' + event.start.toISOString() +
+                '\nStart End: ' + event.start.toISOString() +       
+                '\n'
+  
+           );
+      
+        };
     }
 }
