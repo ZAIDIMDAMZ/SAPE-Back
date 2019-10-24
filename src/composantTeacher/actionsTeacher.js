@@ -110,29 +110,49 @@ module.exports={
         const events = ical.sync.parseFile('C:\\Users\\hajar\\Desktop\\courtaud_didier.ics');
         //ical.sync.parseFile
         // // loop through events and log them
-        let a=[];
+        let dfile=[];
         let mesCours=[];
+        let typeCours=[];
+        let dureeCours=[];
         let i=0;
         for (const event of Object.values(events)) {
-            a=a.concat(
-            '\nDescription: ' + JSON.stringify(event.description)
+            dfile=dfile.concat(
+            // '\nDescription: ' + JSON.stringify(event.description)
+            JSON.stringify(event.description)
         );
-             mesCours = a[i].split("\\");
-             console.log([mesCours[0].split(" - ")[1],mesCours[2].split(" : ")[1].split("\"}")[0]]);
-             i++;
+             mesCours = dfile[i].split("\\");
+            
 
-            // res.send(
-            //     a
-                // console.log(    
-                // 'Summary: ' + event.summary +
-                // '\nDescription: ' + JSON.stringify(event.description)+
-                // '\nStart Date: ' + event.start.toISOString() +
-                // '\nStart End: ' + event.start.toISOString() +       
-                // '\n'
-  
-        //    );
+           //Pour le type de cours
+           typeCours[i]=mesCours[0].split(" - ")[1];
+            if (typeCours[i]==undefined){
+                typeCours[i]=mesCours[0].split(" : ")[1];
+            }
+            
+            // pour la duree du cours
+            dureeCours[i]=mesCours[2]
+            if (mesCours[2]==undefined){
+                dureeCours[i]=mesCours[1];
+            }
+            
+            console.log([typeCours[i],dureeCours[i]]);
+
+                // mesCours[2].split("\"}")[0]);
+
+            // [CoursDuree[i],
+            i++; 
+            
+
+    
+
+
+
+
+
       
         };
-        res.send(a)
+
+        
+        res.send(dfile)
     }
 }
