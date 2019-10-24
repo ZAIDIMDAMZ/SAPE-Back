@@ -110,17 +110,29 @@ module.exports={
         const events = ical.sync.parseFile('C:\\Users\\hajar\\Desktop\\courtaud_didier.ics');
         //ical.sync.parseFile
         // // loop through events and log them
+        let a=[];
+        let mesCours=[];
+        let i=0;
         for (const event of Object.values(events)) {
-            // // res.send(
-            console.log(    
-                'Summary: ' + event.summary +
-                '\nDescription: ' + JSON.stringify(event.description)+
-                '\nStart Date: ' + event.start.toISOString() +
-                '\nStart End: ' + event.start.toISOString() +       
-                '\n'
+            a=a.concat(
+            '\nDescription: ' + JSON.stringify(event.description)
+        );
+             mesCours = a[i].split("\\");
+             console.log([mesCours[0].split(" - ")[1],mesCours[2].split(" : ")[1].split("\"}")[0]]);
+             i++;
+
+            // res.send(
+            //     a
+                // console.log(    
+                // 'Summary: ' + event.summary +
+                // '\nDescription: ' + JSON.stringify(event.description)+
+                // '\nStart Date: ' + event.start.toISOString() +
+                // '\nStart End: ' + event.start.toISOString() +       
+                // '\n'
   
-           );
+        //    );
       
         };
+        res.send(a)
     }
 }
