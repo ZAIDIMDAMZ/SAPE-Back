@@ -130,26 +130,16 @@ module.exports={
             }
             
             // pour la duree du cours
-            dureeCours[i]=mesCours[2]
+            dureeCours[i]=mesCours[2];
             if (mesCours[2]==undefined){
-                dureeCours[i]=mesCours[1];
+                dureeCours[i]=mesCours[1].split(" : ")[1];
+            }else{
+                dureeCours[i]=mesCours[2].split(" : ")[1]
             }
-            
-            console.log([typeCours[i],dureeCours[i]]);
 
-                // mesCours[2].split("\"}")[0]);
-
-            // [CoursDuree[i],
-            i++; 
-            
-
-    
-
-
-
-
-
-      
+            // split("\"}")[0]
+            console.log([typeCours[i],dureeCours[i].split("\"}")[0]]);
+            i++;      
         };
 
         
