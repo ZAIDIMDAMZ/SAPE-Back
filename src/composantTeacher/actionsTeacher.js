@@ -104,11 +104,7 @@ module.exports={
     },
 
     actionsParseIcalFile: (req, res)=>{
-        //console.log('hello :'+ path.basename('C:\\Users\\hajar\\Desktop\\courtaud_didier.ics'))
- 
-        //use the sync function parseFile() to parse this ics file
         const events = ical.sync.parseFile('C:\\Users\\hajar\\Desktop\\courtaud_didier.ics');
-        //ical.sync.parseFile
         // // loop through events and log them
         let dfile=[];
         let mesCours=[];
@@ -117,14 +113,12 @@ module.exports={
         let i=0;
         for (const event of Object.values(events)) {
             dfile=dfile.concat(
-            // '\nDescription: ' + JSON.stringify(event.description)
-            JSON.stringify(event.description)
-        );
-             mesCours = dfile[i].split("\\");
+                JSON.stringify(event.description)
+            );
+            mesCours = dfile[i].split("\\");
             
-
-           //Pour le type de cours
-           typeCours[i]=mesCours[0].split(" - ")[1];
+            //Pour le type de cours
+            typeCours[i]=mesCours[0].split(" - ")[1];
             if (typeCours[i]==undefined){
                 typeCours[i]=mesCours[0].split(" : ")[1];
             }
@@ -136,13 +130,12 @@ module.exports={
             }else{
                 dureeCours[i]=mesCours[2].split(" : ")[1]
             }
-
-            // split("\"}")[0]
+            //le res a envoyer
             console.log([typeCours[i],dureeCours[i].split("\"}")[0]]);
             i++;      
         };
 
         
-        res.send(dfile)
+        //res.send(dfile)
     }
 }
