@@ -106,36 +106,36 @@ module.exports={
     actionsParseIcalFile: (req, res)=>{
         const events = ical.sync.parseFile('C:\\Users\\hajar\\Desktop\\courtaud_didier.ics');
         // // loop through events and log them
-        let dfile=[];
-        let mesCours=[];
-        let typeCours=[];
-        let dureeCours=[];
+        let icsFile=[];
+        let dataExtract=[];
+        let typeCourse=[];
+        let period=[];
         let i=0;
         for (const event of Object.values(events)) {
-            dfile=dfile.concat(
+            icsFile=icsFile.concat(
                 JSON.stringify(event.description)
             );
-            mesCours = dfile[i].split("\\");
+            dataExtract = icsFile[i].split("\\");
             
             //Pour le type de cours
-            typeCours[i]=mesCours[0].split(" - ")[1];
-            if (typeCours[i]==undefined){
-                typeCours[i]=mesCours[0].split(" : ")[1];
+            typeCourse[i]=dataExtract[0].split(" - ")[1];
+            if (typeCourse[i]==undefined){
+                typeCourse[i]=dataExtract[0].split(" : ")[1];
             }
             
             // pour la duree du cours
-            dureeCours[i]=mesCours[2];
-            if (mesCours[2]==undefined){
-                dureeCours[i]=mesCours[1].split(" : ")[1];
+            period[i]=dataExtract[2];
+            if (dataExtract[2]==undefined){
+                period[i]=dataExtract[1].split(" : ")[1];
             }else{
-                dureeCours[i]=mesCours[2].split(" : ")[1]
+                period[i]=dataExtract[2].split(" : ")[1]
             }
             //le res a envoyer
-            console.log([typeCours[i],dureeCours[i].split("\"}")[0]]);
+            console.log([typeCourse[i],period[i].split("\"}")[0]]);
             i++;      
         };
 
         
-        //res.send(dfile)
+        //res.send(icsFile)
     }
 }
