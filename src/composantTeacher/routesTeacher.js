@@ -14,7 +14,7 @@ router.get('', actionsTeacher.actionAllTeachers);
 router.get('/login/:username/:password',actionsTeacher.actionsConnexionTeacher);
 
 //parser
-router.get('/parse/test',actionsTeacher.actionsParseIcalFile);
+router.get('/parse/ics/:name/:lastname',actionsTeacher.actionsParseIcalFile);
 
 // Add one teacher
 router.post('',actionsTeacher.actionsPostTeacher);

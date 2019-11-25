@@ -104,38 +104,42 @@ module.exports={
     },
 
     actionsParseIcalFile: (req, res)=>{
-        const events = ical.sync.parseFile('C:\\Users\\hajar\\Desktop\\courtaud_didier.ics');
-        // // loop through events and log them
+        //req.nom et req.prenom
+        let urlDownloadIcs='https://edt.univ-evry.fr/icsprof/'+req.params.name+'_'+req.params.lastname+'.ics';
         let icsFile=[];
         let dataExtract=[];
         let typeCourse=[];
+        let typeCourse2=[];
         let period=[];
+        let myFinalData=[];
         let i=0;
-        for (const event of Object.values(events)) {
-            icsFile=icsFile.concat(
-                JSON.stringify(event.description)
-            );
-            dataExtract = icsFile[i].split("\\");
-            
-            //Pour le type de cours
-            typeCourse[i]=dataExtract[0].split(" - ")[1];
-            if (typeCourse[i]==undefined){
-                typeCourse[i]=dataExtract[0].split(" : ")[1];
-            }
-            
-            // pour la duree du cours
-            period[i]=dataExtract[2];
-            if (dataExtract[2]==undefined){
-                period[i]=dataExtract[1].split(" : ")[1];
-            }else{
-                period[i]=dataExtract[2].split(" : ")[1]
-            }
-            //le res a envoyer
-            console.log([typeCourse[i],period[i].split("\"}")[0]]);
-            i++;      
-        };
 
-        
-        //res.send(icsFile)
+        ical.fromURL(urlDownloadIcs, {}, function(err, data) {
+            if (err) console.log(err);
+           
+            for (let i in data) {
+                const ev = data[i];
+                icsFile[i]=data[i].description.val;
+                dataExtract = icsFile[i].split("\\");
+                // console.log(dataExtract); // datas non nettoyées
+
+                //Pour le type de cours
+                typeCourse[i]=dataExtract[0].split(" - ")[1]; 
+                if (typeCourse[i]==undefined){
+                    typeCourse[i]=dataExtract[0].split(" : ")[1]
+                }
+                typeCourse2[i]=typeCourse[i].split("\n")[0];
+                
+                // pour la duree du cours
+                period[i]=dataExtract[0].split(" : ")[3];
+                if (period[i]==undefined){
+                    period[i]=dataExtract[0].split(" : ")[2];
+                }
+                // datas cleaned
+                myFinalData=[].concat(typeCourse2[i],period[i].split("\n")[0]);
+                console.log(myFinalData);     
+        }       
+        // res.send(myFinalData);
+        })
     }
 }

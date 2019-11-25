@@ -118,6 +118,8 @@ module.exports={
     },
 
    
+    processSumHoursTeacher:(id, newTeacher)=>{
         
+    },
     
 }
