@@ -113,6 +113,10 @@ module.exports={
         let period=[];
         let myFinalData=[];
         let i=0;
+        let numCM=0;
+        let numTD=0;
+        let numTP=0;
+        let numExam=0;
 
         ical.fromURL(urlDownloadIcs, {}, function(err, data) {
             if (err) console.log(err);
@@ -152,9 +156,23 @@ module.exports={
                     }
                    
                 }
-                console.log(myFinalData);     
-        }       
-        // res.send(myFinalData);
+                // total of hours by type done by the teacher
+                switch (myFinalData[0]){
+                    case "CM": numCM+=1; break;
+                    case "TD": numTD+=1;  break;
+                    case "TP": numTP+=1; break;
+                    case "Examen":numExam+=1;break;
+                }
+                console.log(myFinalData);       
+            } 
+           
+            console.log([numCM,numTD,numTP,numExam]);
+            res.json({ hourCM: numCM,
+                hourTD: numTD,
+                hourTP: numTP,
+                hourExam: numExam });       
         })
+
+        
     }
 }
