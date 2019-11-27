@@ -123,20 +123,35 @@ module.exports={
                 dataExtract = icsFile[i].split("\\");
                 // console.log(dataExtract); // datas non nettoyées
 
-                //Pour le type de cours
+                // For the type of course
                 typeCourse[i]=dataExtract[0].split(" - ")[1]; 
                 if (typeCourse[i]==undefined){
                     typeCourse[i]=dataExtract[0].split(" : ")[1]
                 }
                 typeCourse2[i]=typeCourse[i].split("\n")[0];
                 
-                // pour la duree du cours
+                // For the period
                 period[i]=dataExtract[0].split(" : ")[3];
                 if (period[i]==undefined){
                     period[i]=dataExtract[0].split(" : ")[2];
                 }
-                // datas cleaned
+                // Datas semi-cleaned
                 myFinalData=[].concat(typeCourse2[i],period[i].split("\n")[0]);
+
+                // Clean some wrong datas
+                if (myFinalData[0] != "CM" && myFinalData[0] !="TD" && myFinalData[0] !="TP" && myFinalData[0] !="Examen"){
+                    if(myFinalData[0].includes("TD")){
+                        console.log("replace:"+myFinalData[0]);
+                        myFinalData[0]="TD"
+                    }else if (myFinalData[0].includes("TP")){
+                        console.log("replace:"+myFinalData[0]);
+                        myFinalData[0]="TP"
+                    }else {
+                        console.log("replace:"+myFinalData[0]);
+                        myFinalData[0]="CM"
+                    }
+                   
+                }
                 console.log(myFinalData);     
         }       
         // res.send(myFinalData);
