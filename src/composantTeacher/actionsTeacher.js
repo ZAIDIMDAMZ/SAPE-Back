@@ -167,7 +167,8 @@ module.exports={
             } 
            
             console.log([numCM,numTD,numTP,numExam]);
-            res.json({ hourCM: numCM,
+            res.json({ 
+                hourCM: numCM,
                 hourTD: numTD,
                 hourTP: numTP,
                 hourExam: numExam });       
