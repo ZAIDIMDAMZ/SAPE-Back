@@ -171,7 +171,7 @@ module.exports={
                 hourTD: numTD,
                 hourTP: numTP,
                 hourExam: numExam });       
-        })
+            })
 
         
     }
