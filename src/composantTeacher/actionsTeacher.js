@@ -80,16 +80,16 @@ module.exports={
     },
 
     actionsUpdateTeacher: (req, res)=>{
-        let pwd= bcrypt.hashSync(req.body.mdp, 8)
-        // Creattion du token
-        let tkn = jwt.sign({nameTeacher:req.body.nom, lastnameTeacher:req.body.prenom, mailTeacher:req.body.mail}, 'SecretTopSecret');
+        // let pwd= bcrypt.hashSync(req.body.mdp, 8)
+        // // Creattion du token
+        // let tkn = jwt.sign({nameTeacher:req.body.nom, lastnameTeacher:req.body.prenom, mailTeacher:req.body.mail}, 'SecretTopSecret');
         let myTeacher= new colTeacher({
             nameTeacher: req.body.nom,
             lastnameTeacher: req.body.prenom,
             mailTeacher: req.body.mail,
-            passwordTeacher:pwd,
+            // passwordTeacher:pwd,
             classTeacher: req.body.statut,
-            token: tkn,
+            // token: tkn,
         });
         processTeacher.processUpdateTeacher(req.params.id,myTeacher)
         .then((result)=>{

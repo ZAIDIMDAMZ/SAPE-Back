@@ -101,9 +101,9 @@ module.exports={
                         teacher.nameTeacher= newTeacher.nameTeacher
                         teacher.lastnameTeacher= newTeacher.lastnameTeacher
                         teacher.mailTeacher= newTeacher.mailTeacher
-                        teacher.passwordTeacher= newTeacher.passwordTeacher
+                        // teacher.passwordTeacher= newTeacher.passwordTeacher
                         teacher.classTeacher= newTeacher.classTeacher
-                        teacher.token= newTeacher.token
+                        // teacher.token= newTeacher.token
                         
                         teacher.save((err,teacherSaved)=>{
                             if(err){
