@@ -11,7 +11,7 @@
     "fs": "0.0.1-security",
     "ical": "^0.6.0",
     "ics-to-json": "^1.0.0",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "mongoose": "^5.7.12",
     "node-ical": "^0.10.0",
     "path": "^0.12.7"
